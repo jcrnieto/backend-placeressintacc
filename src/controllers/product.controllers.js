@@ -1,57 +1,68 @@
-const modelProduct = require('../../models').Product;
-const orderDetail = require('../../models').OrderDetail;
+const {PrismaClient} = require('@prisma/client');
+const prisma = new PrismaClient();
+const jwt = require("jsonwebtoken");
 
 //agregar productos
-const getProduct = (req, res) => {
-    modelProduct.findAll({
-        include: [ { model:orderDetail } ]
-     })
-     .then( (data)=>{
-        res.json({datos: data})
-    })
-    .catch( error => {
-        console.log(error)
-    })
+const getProduct = async (req, res) => {
+try{
+   const result = await prisma.product.findMany();
+   res.json(result);
+}catch(err){
+    console.log(err)
+}
 }
 
 //agregar productos
-const addProduct = (req, res) => {
-    modelProduct.create(req.body)
-        .then( (data)=>{
-            res.json({datos: data})
-       })
-       .catch( error => {
-           console.log(error)
-       })
-}
-
-const deleteProduct = (req, res) => {
+const addProduct = async (req, res) => {
     
-        modelProduct.destroy( {
-            where: {id: req.params.id}
-        })
-        .then( (data)=>{
-            res.json({datos: data})
-        })
-        .catch( error => {
-            console.log(error)
-        });
-        res.send('producto eliminado con exito')
+        try{
+            const {title, image, description, price} = req.body;
+        
+             const result = await prisma.product.create({
+                 data: {
+                     title, image, description, price
+                 },
+              })
+              res.json(result);
+            }catch(err){
+                console.log(err)
+            }
+}
+
+//eliminar producto
+const deleteProduct = async (req, res) => {
+    
+    try{
+     const {id} = req.params;
+     console.log(id)
+     if(id){
+        const result = await prisma.product.delete({
+            where: {id: Number(id)}
+         })
+         res.json(result);
+     }else{
+        return res.status(401).json({ error: "no existe id" });
+     }
+    }catch(err){
+        console.log(err)
+    }
 }
 
 //editar productos
-const editProduct = (req, res) => {
-    modelProduct.update(req.body, {
-        where: {id: req.params.id}
-     })
-     .then( (data)=>{
-         res.json({datos: data})
-     })
-     .catch( error => {
-         console.log(error)
-     });
-     res.send('producto modificado con exito')
+const editProduct = async (req, res) => {
+    try{
+    const {id} = req.params;
+    const {title, image, description, price} = req.body;
+    const result = await prisma.product.update({
+        where: {id: Number(id)},
+        data: {title, image, description, price}
+    })
+    res.json(result);
+}catch(err){
+    console.log(err)
 }
+}
+
 
 
 module.exports = {

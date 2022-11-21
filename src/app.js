@@ -6,7 +6,7 @@ const routes = require('./routes');
 
 const app = express();
 
-require('../models/index')
+//require('../models/index')
 
 app.name = 'API';
 
