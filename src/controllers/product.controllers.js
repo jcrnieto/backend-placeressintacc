@@ -2,8 +2,10 @@ const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
 const jwt = require("jsonwebtoken");
 
+
 //agregar productos
 const getProduct = async (req, res) => {
+
 try{
    const result = await prisma.product.findMany();
    res.json(result);
@@ -14,13 +16,19 @@ try{
 
 //agregar productos
 const addProduct = async (req, res) => {
-    
-        try{
-            const {title, image, description, price} = req.body;
+        console.log(req.file);
+        const {firebaseUrl} = req.file ? req.file : "";
         
+        try{
+            const {title, description, price} = req.body;
+            const priceInt = parseInt(price);
+
              const result = await prisma.product.create({
                  data: {
-                     title, image, description, price
+                     title,
+                     image:firebaseUrl,
+                     description,
+                     price:priceInt
                  },
               })
               res.json(result);

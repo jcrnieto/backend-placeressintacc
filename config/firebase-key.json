@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "imagenes-placeressintacc",
+  "private_key_id": "fd7cd6cb02b431ba98faff715683922544f5fe2c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCzaCfAUWtOE89P\nDPycL6zeF73dPilUSxwDy6e0ogy3ogd08tEZ8Sx63/pUP1MnZrje1vysoHrEr7BQ\nNhFXlmBx6mLEMSo6yO2eVGQmcD0doaO1igx1Nnv7C0+9o/wr1lkML44dqOkqGK4e\nkoO7xC3V3nzJsyI19XiP28MlBKmFfHs4HcQcIecps7YYK/IXcifPKyaVkiKXjkZe\n0zLxMcvX5+LQ+Eilme1MD/RtFQk8gqn5lli380rXnusc8KEiYLnl1O47vRYeg7x+\n6pu83q0ZoyBNFV8KnwTXAfkSSUKsnlnUNb9qeIc+F3qqf/5qQPlPhydby3WGFby4\nqK4oCiidAgMBAAECggEAJSq5uXzklwtBkmXlW1IBJQ2UFuaO11isGBkzyBcePVjC\n5LZ9HTu6dEY8bQGlb283c2rkc7rXVDH1e9iHpTaRCmh9R5nL3tvLZlajXNc5wg6/\nhJdx10KPUsXYIjh7wHUqg3zCm2Bn1YHBaLH/uoF84WazQXHr73PIIz1q4xthJzb2\nsqmXSIAT/Wn1RMBFl1rQuNDdNcjriV4NQ6UbhW6+sqMJYjo3cvf8Yl+Rj5CCcKX/\n3C7jbk2NPA/w8Ua1WLlkKpAZnhsB1NOsqaUm96Q9kcNp8h5VR+GDm9/I5OPNa/ry\n0LRImOXm2ODYJ3OZ8k0G9rWpmEhP96WrunCMg2U1wQKBgQDkT75EGAs7l+Onrduq\n1xrlcwiC7Lk3vvJB3RQLWwO4C3aEA/VX9GW0c28LE6tZZHff6DGhWjgzyrOrnCCm\nO/UzDzX7SoT6238VQd+SFvSf3JRT2QKSGE0suT0q+DghZ0JNSlI726T9xCcoPfj8\n+XLnsB4BaDy0dYwYvlOVCd6DjQKBgQDJKhj7WPgFWYyUKYj4WTQXqMpWwUM8rFg9\nRHDTezYzmboOvFnQLpWVs84IpZGMEnxTule7b2+2/UjT0NdlugoQrB2imG+jCvOU\nc9JT8TzcWKmWl6EmxQ09LItDQbTrzRLppM/5WCLd1vCCiZG+5tciIEtoUtEjrd/D\n12guQX3tUQKBgQC2e75Z8tXXlfmSJnYzQKbwylb9PnR0SByd5DSHNwHr8s2RixBo\ncqFv7+vLcLc+Rf1Ca/ZvPws46kVdXvcBp16+puPArLlJQHN87B/kRpDTzZyIwCU7\n3Eyi+JQZajiDCmOGH2dHDLH9WvDpS09d84uR/8Sb31LV8jY9+LIZp7/AaQKBgGPE\nbCVkJ4XHts/YlaTN4OcHAGrsaKNTumOQaQCJsAUBbeRXB5gXMnrPdRSWwMuec2i3\nF0HPb7Fqhs7+WYWLMei44+26+kr7aHisxJh7ITsLAfi89OCchAdd6yeNE+SKjaGw\n6rB4RLqPGjMzdUQfinzTVXLE+BJg7oRbdcDTHFgxAoGARxQpODn8dBTAmAReCKk5\n/sSMqNyCqd8mSQUwdzLLhzsWsVfUljTt0631wNYaBZBwIcRyP5qOPNQ2uMIq/N4U\ngF4HqpYEbsRn0V0aD1oVtBrfmNi8WZFQWWMTtg132ncVf4JH2QTmLk/gmKVgy2bk\n0r4eV2mzrNTuLQt5tsvr27M=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-zfocu@imagenes-placeressintacc.iam.gserviceaccount.com",
+  "client_id": "114626131646339089621",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zfocu%40imagenes-placeressintacc.iam.gserviceaccount.com"
+}
