@@ -6,7 +6,10 @@ const {checkOuth} = require('../controllers/checkOuth.controllers');
 const {uploadImage} = require('../services/firebase');
 
 const  multer   =  require ( 'multer' );
-const upload = multer();
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: 1024 * 1024
+});
 
 const router = Router();
 

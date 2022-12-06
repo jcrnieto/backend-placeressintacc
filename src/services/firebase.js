@@ -3,7 +3,7 @@ var admin = require("firebase-admin");
 
 var serviceAccount = require("../../config/firebase-key.json");
 
-const BUCKET = "gs://imagenes-placeressintacc.appspot.com"
+const BUCKET ="imagenes-placeressintacc.appspot.com"
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

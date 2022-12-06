@@ -31,6 +31,7 @@ const addProduct = async (req, res) => {
                      price:priceInt
                  },
               })
+              console.log(result)
               res.json(result);
             }catch(err){
                 console.log(err)
