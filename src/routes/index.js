@@ -1,9 +1,10 @@
 const { Router } = require('express');
-const {getProduct, addProduct, deleteProduct, editProduct}= require('../controllers/product.controllers');
+const {getProduct, addProduct, deleteProduct, editProduct, getId, getName}= require('../controllers/product.controllers');
 const {addUser, deleteUser} = require('../controllers/users.controllers');
 const {login} = require('../controllers/login.controllers');
 const {checkOuth} = require('../controllers/checkOuth.controllers');
 const {uploadImage} = require('../services/firebase');
+
 
 const  multer   =  require ( 'multer' );
 const upload = multer({
@@ -21,6 +22,10 @@ router.post('/addProduct',upload.single('image'), uploadImage, addProduct);
 router.delete('/deleteProduct/:id', deleteProduct);
 
 router.put('/editProduct/:id', editProduct);
+
+router.get('/getId/:id', getId);
+
+router.get('/getName', getName)
 
 //rutas de usuarios
 router.post('/addUser', addUser);
