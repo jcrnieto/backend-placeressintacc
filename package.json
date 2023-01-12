@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon L"
+    "start": "copy .env.prod .env & node index.js",
+    "start-dev": "copy .env.dev .env & node index.js",
+    "start-prod": "copy .env.prod .env & node index.js"
   },
   "keywords": [],
   "author": "",
