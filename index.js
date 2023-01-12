@@ -4,3 +4,5 @@ const { SERVER_PORT } = require('./src/common/server')
 server.listen(SERVER_PORT, () => {
     console.log(`Listening at port ${SERVER_PORT}`);
 });
+
+server.timeout = 10000;

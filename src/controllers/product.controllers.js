@@ -15,9 +15,9 @@ const healthCheck = async (req, res) => {
 const getProduct = async (req, res) => {
   try {
     const result = await prisma.product.findMany();
-    res.json(result);
-  } catch (err) {
-    console.log(err);
+    res.json(result); /*{ ok: true, result: result }*/
+  } catch (e) {
+    res.json({ ok: false, result: [], errorMessage: e?.message?.toString() });
   }
 };
 
