@@ -5,7 +5,7 @@ const saltRounds = 10;
 
 const addUser = async (req, res) => {
     const {username, password} = req.body;
-    const user = await prisma.user.findMany({where:{ username }})
+    const user = await prisma.user.findMany({where: {username} })
     //console.log(user)
     if(!user.length){
         bcrypt.hash(password, saltRounds, async(err, hash)=>{
@@ -39,9 +39,29 @@ const deleteUser = async (req, res) => {
     }
 }
 
+const getUser = async (req, res) => {
+
+    try{
+       const result = await prisma.user.findMany();
+       res.json(result);
+    }catch(err){
+        console.log(err)
+    }
+}
+
+// const userMessage = (req, res) => {
+//     try{
+//        const { name, email, phone, message } = req.body
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+    
 
 
 module.exports = {
     addUser,
-    deleteUser
+    deleteUser,
+    getUser
+    
 }

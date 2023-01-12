@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const {getProduct, addProduct, deleteProduct, editProduct, getId, getName}= require('../controllers/product.controllers');
-const {addUser, deleteUser} = require('../controllers/users.controllers');
+const {addUser, deleteUser, getUser} = require('../controllers/users.controllers');
 const {login} = require('../controllers/login.controllers');
 const {checkOuth} = require('../controllers/checkOuth.controllers');
 const {uploadImage} = require('../services/firebase');
@@ -31,6 +31,9 @@ router.get('/getName', getName)
 router.post('/addUser', addUser);
 
 router.delete('/deleteUser/:id', deleteUser);
+
+router.get('/getUser', getUser);
+
 
 //rutas de login
 router.post('/login', login);
