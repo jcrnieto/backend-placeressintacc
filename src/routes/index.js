@@ -16,6 +16,8 @@ const {
 const { login } = require("../controllers/login.controllers");
 const { checkOuth } = require("../controllers/checkOuth.controllers");
 const { uploadImage } = require("../services/firebase");
+const { emailClient } = require("../controllers/emailClient.controllers");
+
 
 const multer = require("multer");
 const upload = multer({
@@ -51,6 +53,7 @@ router.get("/getUser", getUser);
 //rutas de login
 router.post("/login", login);
 
-//ruta de firebase
+//ruta de mensaje del cliente
+router.post("/clientEmail", emailClient );
 
 module.exports = router;
