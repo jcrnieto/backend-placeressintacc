@@ -103,10 +103,16 @@ const getName = async (req, res) => {
   try {
     const title = req.query.title;
 
-    const result = await prisma.product.findMany({
-      where: { title: String(title) },
+    if(title){
+      const result = await prisma.product.findMany({
+        where: { title: String(title.toLowerCase()) },
+      //console.log(result)
     });
-    res.json(result);
+     res.send(result)
+     }else{
+      return res.send([{error: "No fue encontrado"}])
+    }
+
   } catch (err) {
     console.log(err);
   }
