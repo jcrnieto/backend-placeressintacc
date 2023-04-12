@@ -2,8 +2,6 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const jwt = require("jsonwebtoken");
 
-console.log("DATABASE_URL", process.env.DATABASE_URL);
-
 //health check
 const healthCheck = async (req, res) => {
   try {
@@ -13,35 +11,61 @@ const healthCheck = async (req, res) => {
   }
 };
 
-//agregar productos
+//traer productos
 const getProduct = async (req, res) => {
   try {
     const result = await prisma.product.findMany();
-    res.json(result); /*{ ok: true, result: result }*/
+   
+    if(!result || result.length === 0){
+      return res.status(404).json({ mensaje: 'No se encontraron productos' });
+    }
+    res.status(200).json({ 
+      ok:true,
+      result: result
+    });
+   
   } catch (e) {
-    res.json({ ok: false, result: [], errorMessage: e?.message?.toString() });
+    res.status(400).json({ ok: false, result: [], errorMessage: e?.message?.toString() });
   }
 };
 
 //agregar productos
 const addProduct = async (req, res) => {
-  console.log(req.file);
+  //console.log(req.file);
   const { firebaseUrl } = req.file ? req.file : "";
 
   try {
-    const { title, description, price } = req.body;
+    const { title, description, price,id } = req.body;
     const priceInt = parseInt(price);
 
-    const result = await prisma.product.create({
-      data: {
-        title,
-        image: firebaseUrl,
-        description,
-        price: priceInt,
-      },
-    });
-    console.log(result);
-    res.json(result);
+    let result = await prisma.product.findFirst({ where: { title }, });
+         console.log('esto es check title',result)
+    if(!result){
+     
+      const productCreate = await prisma.product.create({
+        data: {
+          title,
+          image: firebaseUrl,
+          description,
+          price: priceInt,
+        },
+      });
+        
+      console.log(productCreate);
+      res.json({
+        ok:true,
+        result: productCreate
+      });
+
+    }else{
+      return res.status(400).json({
+        ok:false,
+        msg:'la receta ya existe en base de datos'
+       })
+    }
+
+    
+   
   } catch (err) {
     console.log(err);
   }
@@ -50,17 +74,22 @@ const addProduct = async (req, res) => {
 //eliminar producto
 const deleteProduct = async (req, res) => {
   try {
-    const { id } = req.params;
-    console.log(id);
-    if (id) {
-      const result = await prisma.product.delete({
+    const id = parseInt(req.params.id);
+   
+      const result = await prisma.product.findUnique({ where: {id}});
+
+      if(!result){
+        return res.status(404).json({ mensaje: 'Producto no encontrado' })
+      }
+      
+      await prisma.product.delete({
         where: { id: Number(id) },
       });
-      res.json(result);
-    } else {
-      return res.status(401).json({ error: "no existe id" });
-    }
-  } catch (err) {
+
+      res.status(200).json({ mensaje: 'Producto eliminado exitosamente' });
+
+    } 
+   catch (err) {
     console.log(err);
   }
 };

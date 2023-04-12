@@ -4,27 +4,40 @@ const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 const addUser = async (req, res) => {
-    const {username, password} = req.body;
-    const user = await prisma.user.findMany({where: {username} })
-    //console.log(user)
-    if(!user.length){
-        bcrypt.hash(password, saltRounds, async(err, hash)=>{
-            if(err){
-                console.log(err)
-            }
-            await prisma.user.create({
-                data: {
-                    username,
-                    password: hash,
-                    isAdmin: false
-                }
-            })
-        })
 
-        res.send("Usuario creado correctamente");
-    }else{
-       res.status(401).json({error: 'el usuario ya existe en base de datos'})
+    try {
+        const {username, password} = req.body;
+        let user = await prisma.user.findMany({where: {username}});
+
+        if(!user.length){
+                bcrypt.hash(password, saltRounds, async(err, hash)=>{
+                    if(err){
+                        console.log(err)
+                    }
+                    await prisma.user.create({
+                        data: {
+                            username,
+                            password: hash,
+                            isAdmin: false
+                        }
+                    })
+                })
+            }else{
+                return res.status(400).json({
+                    ok:false,
+                    msg:'el usuario ya existe con ese correo'
+                   })
+            }
+       
+          res.json({
+            ok:true,
+            msg:'usuario creado correctamente'
+          })
+    } catch (error) {
+        console.log(error)
     }
+   
+   
 }
 
 const deleteUser = async (req, res) => {
@@ -48,15 +61,6 @@ const getUser = async (req, res) => {
         console.log(err)
     }
 }
-
-// const userMessage = (req, res) => {
-//     try{
-//        const { name, email, phone, message } = req.body
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-    
 
 
 module.exports = {
