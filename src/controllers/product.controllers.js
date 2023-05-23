@@ -15,6 +15,7 @@ const healthCheck = async (req, res) => {
 const getProduct = async (req, res) => {
   try {
     const result = await prisma.product.findMany();
+    console.log('result', result)
    
     if(!result || result.length === 0){
       return res.status(404).json({ mensaje: 'No se encontraron productos' });
@@ -39,7 +40,7 @@ const addProduct = async (req, res) => {
     const priceInt = parseInt(price);
 
     let result = await prisma.product.findFirst({ where: { title }, });
-         console.log('esto es check title',result)
+         //console.log('esto es check title',result)
     if(!result){
      
       const productCreate = await prisma.product.create({
@@ -51,7 +52,7 @@ const addProduct = async (req, res) => {
         },
       });
         
-      console.log(productCreate);
+     // console.log(productCreate);
       res.json({
         ok:true,
         result: productCreate

@@ -26,7 +26,7 @@ const emailClient = async (req, res) => {
         `
       };
 
-      transporter.sendMail(mailOptions, function (error, info) {
+       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           res.status(500).send(error.message);
         } else {
