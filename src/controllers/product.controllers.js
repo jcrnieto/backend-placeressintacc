@@ -1,11 +1,12 @@
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 const jwt = require("jsonwebtoken");
-
+const db = process.env.DATABASE_URL
+console.log('db',db)
 //health check
 const healthCheck = async (req, res) => {
   try {
-    res.json({ ok: true, databaseUrl: process.env.DATABASE_URL });
+    res.json({ ok: true, databaseUrl:db });
   } catch (err) {
     console.log(err);
   }
